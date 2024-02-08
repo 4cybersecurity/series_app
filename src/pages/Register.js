@@ -1,26 +1,26 @@
 import React, {useState} from "react";
 
-const Register = () =>{
+const Register = () => {
     // const [firstName, setFirstName] = useState()
     // const [lastName, setLastName] = useState()
     // const [email, setEmail] = useState()
     // const [password, setPassword] = useState()
 
     const [info, setInfo] = useState({
-        firstName:"",
-        lastName:"",
-        email:"",
-        password:""
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: ""
     });
     const {firstName, lastName, email, password} = info
-    const handleSubmit =(e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         console.log(email, password)
     }
-    const handleChange =(e)=> {
+    const handleChange = (e) => {
         setInfo({...info, [e.target.name]: e.target.value})
     }
-    return(
+    return (
         <div className="d-flex justify-content-center">
             <div className="form-image">
                 <img src={""} alt="sample-serie"/>
