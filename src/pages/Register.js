@@ -1,11 +1,25 @@
 import React, {useState} from "react";
 
 const Register = () =>{
-    const [firstName, setFirstName] = useState()
-    const [lastName, setLastName] = useState()
-    const [email, setEmail] = useState()
-    const [password, setPassword] = useState()
+    // const [firstName, setFirstName] = useState()
+    // const [lastName, setLastName] = useState()
+    // const [email, setEmail] = useState()
+    // const [password, setPassword] = useState()
 
+    const [info, setInfo] = useState({
+        firstName:"",
+        lastName:"",
+        email:"",
+        password:""
+    });
+    const {firstName, lastName, email, password} = info
+    const handleSubmit =(e) => {
+        e.preventDefault();
+        console.log(email, password)
+    }
+    const handleChange =(e)=> {
+        setInfo({...info, [e.target.name]: e.target.value})
+    }
     return(
         <div className="d-flex justify-content-center">
             <div className="form-image">
@@ -13,14 +27,16 @@ const Register = () =>{
             </div>
             <div className="register-form">
                 <h1 className="form-title display-3">Register</h1>
-                <form id="register" onSubmit={null}>
+                <form id="register" onSubmit={handleSubmit}>
                     <div className="mb-3">
                         <label htmlFor="firstName" className="form-label">
                             First Name
                         </label>
                         <input
-                            onChange={(e)=> setFirstName(e.target.value)}
+                            // onChange={(e)=> setFirstName(e.target.value)}
+                            onChange={handleChange}
                             type="text"
+                            name="firstName"
                             className="form-control"
                             placeholder="Enter first name.."
                             required
@@ -32,8 +48,10 @@ const Register = () =>{
                             Last Name
                         </label>
                         <input
-                            onChange={(e)=>setLastName(e.target.value)}
+                            // onChange={(e)=>setLastName(e.target.value)}
+                            onChange={handleChange}
                             type="text"
+                            name="lastName"
                             className="form-control"
                             placeholder="Enter last name.."
                             required
@@ -45,8 +63,10 @@ const Register = () =>{
                             Email
                         </label>
                         <input
-                            onChange={(e)=>setEmail(e.target.value)}
+                            // onChange={(e)=>setEmail(e.target.value)}
+                            onChange={handleChange}
                             type="email"
+                            name="email"
                             className="form-control"
                             placeholder="Enter email.."
                             required
@@ -58,10 +78,12 @@ const Register = () =>{
                             Password
                         </label>
                         <input
-                            onChange={(e)=>setPassword(e.target.value)}
+                            // onChange={(e)=>setPassword(e.target.value)}
+                            onChange={handleChange}
                             type="password"
+                            name="password"
                             className="form-control"
-                            placeholder="Enter first password.."
+                            placeholder="Enter password.."
                             required
                         />
                     </div>
