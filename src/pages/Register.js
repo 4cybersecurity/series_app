@@ -1,100 +1,94 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
 
 const Register = () => {
-    // const [firstName, setFirstName] = useState()
-    // const [lastName, setLastName] = useState()
-    // const [email, setEmail] = useState()
-    // const [password, setPassword] = useState()
-
     const [info, setInfo] = useState({
         firstName: "",
         lastName: "",
         email: "",
-        password: ""
+        password: "",
     });
-    const {firstName, lastName, email, password} = info
+
+    const { firstName, lastName, email, password } = info;
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(email, password)
-    }
+        console.log(email, password);
+    };
+
     const handleChange = (e) => {
-        setInfo({...info, [e.target.name]: e.target.value})
-    }
+        setInfo({ ...info, [e.target.name]: e.target.value });
+    };
+
     return (
-        <div className="d-flex justify-content-center">
-            <div className="form-image">
-                <img src={""} alt="sample-serie"/>
-            </div>
-            <div className="register-form">
-                <h1 className="form-title display-3">Register</h1>
-                <form id="register" onSubmit={handleSubmit}>
-                    <div className="mb-3">
-                        <label htmlFor="firstName" className="form-label">
-                            First Name
-                        </label>
-                        <input
-                            // onChange={(e)=> setFirstName(e.target.value)}
-                            onChange={handleChange}
-                            type="text"
-                            name="firstName"
-                            className="form-control"
-                            placeholder="Enter first name.."
-                            required
-                        />
+        <Container className="mt-5">
+            <Row className="justify-content-center">
+                <Col md={6}>
+                    <div className="text-center">
+                        <img src={""} alt="sample-serie" className="img-fluid" />
                     </div>
+                </Col>
+                <Col md={6}>
+                    <div className="register-form">
+                        <h1 className="text-center display-3">Register</h1>
+                        <Form onSubmit={handleSubmit}>
+                            <Form.Group controlId="firstName">
+                                <Form.Label>First Name</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    name="firstName"
+                                    placeholder="Enter first name.."
+                                    value={firstName}
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </Form.Group>
 
-                    <div className="mb-3">
-                        <label htmlFor="lastName" className="form-label">
-                            Last Name
-                        </label>
-                        <input
-                            // onChange={(e)=>setLastName(e.target.value)}
-                            onChange={handleChange}
-                            type="text"
-                            name="lastName"
-                            className="form-control"
-                            placeholder="Enter last name.."
-                            required
-                        />
+                            <Form.Group controlId="lastName">
+                                <Form.Label>Last Name</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    name="lastName"
+                                    placeholder="Enter last name.."
+                                    value={lastName}
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </Form.Group>
+
+                            <Form.Group controlId="email">
+                                <Form.Label>Email</Form.Label>
+                                <Form.Control
+                                    type="email"
+                                    name="email"
+                                    placeholder="Enter email.."
+                                    value={email}
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </Form.Group>
+
+                            <Form.Group controlId="password">
+                                <Form.Label>Password</Form.Label>
+                                <Form.Control
+                                    type="password"
+                                    name="password"
+                                    placeholder="Enter password.."
+                                    value={password}
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </Form.Group>
+
+                            <Button type="submit" variant="primary" block>
+                                Register
+                            </Button>
+                        </Form>
                     </div>
-
-                    <div className="mb-3">
-                        <label htmlFor="email" className="form-label">
-                            Email
-                        </label>
-                        <input
-                            // onChange={(e)=>setEmail(e.target.value)}
-                            onChange={handleChange}
-                            type="email"
-                            name="email"
-                            className="form-control"
-                            placeholder="Enter email.."
-                            required
-                        />
-                    </div>
-
-                    <div className="mb-3">
-                        <label htmlFor="password" className="form-label">
-                            Password
-                        </label>
-                        <input
-                            // onChange={(e)=>setPassword(e.target.value)}
-                            onChange={handleChange}
-                            type="password"
-                            name="password"
-                            className="form-control"
-                            placeholder="Enter password.."
-                            required
-                        />
-                    </div>
-
-                    <button type="submit" className="btn btn-primary form-control">
-                        Register
-                    </button>
-                </form>
-            </div>
-        </div>
-    )
-}
+                </Col>
+            </Row>
+        </Container>
+    );
+};
 
 export default Register;

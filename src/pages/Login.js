@@ -1,73 +1,78 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+import { Container, Row, Col, Form, InputGroup, FormControl, Button } from "react-bootstrap";
 
 const Login = () => {
-    // const [email, setEmail] = useState()
-    // const [password, setPassword] = useState()
-
     const [info, setInfo] = useState({
-
         email: "",
         password: ""
     });
-    const {email, password} = info
+
+    const { email, password } = info;
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(email, password)
-    }
+        console.log(email, password);
+    };
+
     const handleChange = (e) => {
-        setInfo({...info, [e.target.name]: e.target.value})
-    }
+        setInfo({ ...info, [e.target.name]: e.target.value });
+    };
+
     return (
-        <div className="d-flex justify-content-center">
-            <div className="form-image">
-                <img src={""} alt="sample-serie"/>
-            </div>
-            <div className="login-form">
-                <h1 className="form-title display-3">Login</h1>
-                <form id="login" onSubmit={handleSubmit}>
-
-
-                    <div className="mb-3">
-                        <label htmlFor="email" className="form-label">
-                            Email
-                        </label>
-                        <input
-                            // onChange={(e)=>setEmail(e.target.value)}
-                            onChange={handleChange}
-                            type="email"
-                            name="email"
-                            className="form-control"
-                            placeholder="Enter email.."
-                            required
-                        />
+        <Container className="mt-5">
+            <Row className="justify-content-center">
+                <Col md={6}>
+                    <div className="text-center">
+                        <img src={""} alt="sample-serie" className="img-fluid" />
                     </div>
+                </Col>
+                <Col md={6}>
+                    <div className="login-form">
+                        <h1 className="text-center display-3">Login</h1>
+                        <Form onSubmit={handleSubmit}>
+                            <Form.Group controlId="email" className="mb-3">
+                                <Form.Label>Email</Form.Label>
+                                <InputGroup>
+                                    <FormControl
+                                        type="email"
+                                        name="email"
+                                        placeholder="Enter email.."
+                                        value={email}
+                                        onChange={handleChange}
+                                        required
+                                    />
+                                </InputGroup>
+                            </Form.Group>
 
-                    <div className="mb-3">
-                        <label htmlFor="password" className="form-label">
-                            Password
-                        </label>
-                        <input
-                            // onChange={(e)=>setPassword(e.target.value)}
-                            onChange={handleChange}
-                            type="password"
-                            name="password"
-                            className="form-control"
-                            placeholder="Enter password.."
-                            required
-                        />
+                            <Form.Group controlId="password" className="mb-3">
+                                <Form.Label>Password</Form.Label>
+                                <InputGroup>
+                                    <FormControl
+                                        type="password"
+                                        name="password"
+                                        placeholder="Enter password.."
+                                        value={password}
+                                        onChange={handleChange}
+                                        required
+                                    />
+                                </InputGroup>
+                            </Form.Group>
+
+                            <div className="link" onClick={null}>Forgot Password</div>
+
+                            <Button type="submit" variant="primary" className="mb-3" block>
+                                Login
+                            </Button>
+
+                            <Button variant="primary" className="form-control" block>
+                                Continue with Google
+                            </Button>
+                        </Form>
                     </div>
-                    <div className="link" onClick={null}>Forgot Password</div>
-
-                    <button type="submit" className="btn btn-primary form-control">
-                        Login
-                    </button>
-                </form>
-                <button className="btn btn-primary form-control">
-                    Continue with Google
-                </button>
-            </div>
-        </div>
-    )
-}
+                </Col>
+            </Row>
+        </Container>
+    );
+};
 
 export default Login;
