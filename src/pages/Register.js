@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import React, {useState} from "react";
+import {Container, Row, Col, Form, Button} from "react-bootstrap";
 import {createUser} from "../authentication/firebase";
 import {useNavigate} from "react-router-dom";
 
@@ -13,15 +13,16 @@ const Register = () => {
 
     const navigate = useNavigate();
 
-    const { firstName, lastName, email, password } = info;
+    const {firstName, lastName, email, password} = info;
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        createUser(email, password, navigate);
+        const displayName = `${firstName} ${lastName}`;
+        createUser(email, password, navigate, displayName);
     };
 
     const handleChange = (e) => {
-        setInfo({ ...info, [e.target.name]: e.target.value });
+        setInfo({...info, [e.target.name]: e.target.value});
     };
 
     return (
@@ -29,7 +30,7 @@ const Register = () => {
             <Row className="justify-content-center">
                 <Col md={6}>
                     <div className="text-center">
-                        <img src={""} alt="sample-serie" className="img-fluid" />
+                        <img src={""} alt="sample-serie" className="img-fluid"/>
                     </div>
                 </Col>
                 <Col md={6}>

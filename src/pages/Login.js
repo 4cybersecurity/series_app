@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { Container, Row, Col, Form, InputGroup, FormControl, Button } from "react-bootstrap";
-import {signIn} from "../authentication/firebase";
+import React, {useState} from "react";
+import {Container, Row, Col, Form, InputGroup, FormControl, Button} from "react-bootstrap";
+import {signIn, signUpProvider} from "../authentication/firebase";
 import {useNavigate} from "react-router-dom";
 
 const Login = () => {
@@ -11,7 +11,7 @@ const Login = () => {
 
     const navigate = useNavigate();
 
-    const { email, password } = info;
+    const {email, password} = info;
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -20,7 +20,7 @@ const Login = () => {
     };
 
     const handleChange = (e) => {
-        setInfo({ ...info, [e.target.name]: e.target.value });
+        setInfo({...info, [e.target.name]: e.target.value});
     };
 
     return (
@@ -28,7 +28,7 @@ const Login = () => {
             <Row className="justify-content-center">
                 <Col md={6}>
                     <div className="text-center">
-                        <img src={""} alt="sample-serie" className="img-fluid" />
+                        <img src={""} alt="sample-serie" className="img-fluid"/>
                     </div>
                 </Col>
                 <Col md={6}>
@@ -65,11 +65,11 @@ const Login = () => {
 
                             <div className="link" onClick={null}>Forgot Password</div>
 
-                            <Button type="submit" variant="primary" className="mb-3" block>
+                            <Button type="submit" variant="primary" className="mb-3">
                                 Login
                             </Button>
 
-                            <Button variant="primary" className="form-control" block>
+                            <Button onClick={() => signUpProvider(navigate)} variant="primary" className="form-control">
                                 Continue with Google
                             </Button>
                         </Form>
