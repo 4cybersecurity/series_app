@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Form, InputGroup, FormControl, Button } from "react-bootstrap";
+import {signIn} from "../authentication/firebase";
+import {useNavigate} from "react-router-dom";
 
 const Login = () => {
     const [info, setInfo] = useState({
@@ -7,10 +9,13 @@ const Login = () => {
         password: ""
     });
 
+    const navigate = useNavigate();
+
     const { email, password } = info;
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        signIn(email, password, navigate);
         console.log(email, password);
     };
 
