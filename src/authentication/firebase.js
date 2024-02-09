@@ -1,5 +1,5 @@
 import {initializeApp} from "firebase/app";
-import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth";
+import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut} from "firebase/auth";
 
 
 // TODO: Replace the following with your app's Firebase project configuration
@@ -44,4 +44,15 @@ export const signIn = async (email, password, navigate) => {
         alert(err.message);
     }
 };
+
+export const logOut = () => {
+    signOut(auth)
+        .then((res) => {
+        console.log(res);
+        // Sign-out successful.
+    }).catch((error) => {
+        alert(error.message);
+        // An error happened.
+    });
+}
 
