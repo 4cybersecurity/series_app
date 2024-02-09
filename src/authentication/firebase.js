@@ -36,9 +36,9 @@ export const createUser = async (email, password, navigate) => {
 };
 
 export const signIn = async (email, password, navigate) => {
-    try{
+    try {
         let userCredential = await signInWithEmailAndPassword(auth, email, password);
-
+        sessionStorage.setItem("user", JSON.stringify(userCredential.user))
         navigate("/");
     } catch (err) {
         alert(err.message);
@@ -48,9 +48,9 @@ export const signIn = async (email, password, navigate) => {
 export const logOut = () => {
     signOut(auth)
         .then((res) => {
-        console.log(res);
-        // Sign-out successful.
-    }).catch((error) => {
+            console.log(res);
+            // Sign-out successful.
+        }).catch((error) => {
         alert(error.message);
         // An error happened.
     });
