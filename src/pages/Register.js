@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import {createUser} from "../authentication/firebase";
+import {useNavigate} from "react-router-dom";
 
 const Register = () => {
     const [info, setInfo] = useState({
@@ -10,11 +11,13 @@ const Register = () => {
         password: "",
     });
 
+    const navigate = useNavigate();
+
     const { firstName, lastName, email, password } = info;
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        createUser(email, password);
+        createUser(email, password, navigate);
     };
 
     const handleChange = (e) => {
