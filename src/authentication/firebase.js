@@ -8,7 +8,6 @@ import {
     signInWithPopup,
     updateProfile
 } from "firebase/auth";
-import {setSelectionRange} from "@testing-library/user-event/dist/utils";
 
 
 // TODO: Replace the following with your app's Firebase project configuration
