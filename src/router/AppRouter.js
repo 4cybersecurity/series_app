@@ -4,6 +4,9 @@ import Navbar from "../components/Navbar";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Main from "../pages/Main";
+import SerieDetail from "../pages/SerieDetail";
+
+
 
 
 const AppRouter = () => {
@@ -14,6 +17,7 @@ const AppRouter = () => {
                 <Route path="/" element={<Main/>}/>
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/register" element={<Register/>}/>
+                <Route path="/details/:id" element={<SerieDetail/>}/>
             </Routes>
         </BrowserRouter>
     )

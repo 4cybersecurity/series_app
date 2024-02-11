@@ -1,11 +1,25 @@
-import React from "react";
+import React, {useContext} from "react";
+import {AuthContext} from "./AuthContext";
+import {useNavigate} from "react-router-dom";
 
 const IMG_API = "https://www.themoviedb.org/t/p/w1280/"
 const defaultImage = "https://www.themoviedb.org/t/p/w1280/4edFyasCrkH4MKs6H4mHqlrxA6b.jpg"
 
 const SerieCard = ({name, poster_path, overview, vote_average, id}) => {
+    const {currentUser} = useContext(AuthContext);
+    const navigate = useNavigate()
+    const handleVoteClass = (vote) => {
+        if (vote >= 8) {
+            return  "green";
+        } else if (vote >= 6) {
+            return "orange";
+        } else {
+            return "red";
+        }
+    }
     return (
-        <div className="serie">
+        <div className="serie"
+        onClick={() => navigate("/details/" + id)}>
 
             <img
                 loading="lazy"
@@ -14,6 +28,7 @@ const SerieCard = ({name, poster_path, overview, vote_average, id}) => {
             />
             <div className="d-flex align-items-baseline justify-content-between p-1 text-white">
                 <h5>{name}</h5>
+                {currentUser && <span className={`tag${handleVoteClass(vote_average)}`}>{vote_average}</span>}
             </div>
             <div className="serie-over">
                 <h2>Overview</h2>
