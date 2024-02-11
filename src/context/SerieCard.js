@@ -1,7 +1,9 @@
 import React from "react";
 
+const IMG_API = "https://www.themoviedb.org/t/p/w1280/"
+const defaultImage = "https://www.themoviedb.org/t/p/w1280/4edFyasCrkH4MKs6H4mHqlrxA6b.jpg"
+
 const SerieCard = ({name, poster_path, overview, vote_average, id}) => {
-    console.log(props)
     return (
         <div className="serie">
 
