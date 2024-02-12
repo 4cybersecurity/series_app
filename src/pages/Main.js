@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from "react";
 import axios from "axios";
-import SerieCard from "../context/SerieCard";
+import SerieCard from "../components/SerieCard";
 import {AuthContext} from "../context/AuthContext";
 import {toastErrorNotify, toastWarnNotify} from "../helpers/ToastNotify";
 

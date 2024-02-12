@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Container, Row, Col, Form, InputGroup, FormControl, Button} from "react-bootstrap";
-import {signIn, signUpProvider} from "../authentication/firebase";
+import {forgotPassword, signIn, signUpProvider} from "../authentication/firebase";
 import {useNavigate} from "react-router-dom";
 
 const Login = () => {
@@ -63,7 +63,7 @@ const Login = () => {
                                 </InputGroup>
                             </Form.Group>
 
-                            <div className="link" onClick={null}>Forgot Password</div>
+                            <div className="link" onClick={()=>forgotPassword(email)}>Forgot Password</div>
 
                             <Button type="submit" variant="primary" className="mb-3">
                                 Login

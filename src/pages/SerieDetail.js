@@ -22,7 +22,7 @@ const SerieDetail = () => {
         axios.get(serieDetailBaseUrl)
             .then(res => setSerieDetails(res.data))
             .catch(err => console.log(err))
-    }, []);
+    }, [serieDetailBaseUrl]);
     return (
         <div className="container py-5">
             <h1 className="text-center">{name}</h1>
