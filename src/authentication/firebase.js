@@ -8,6 +8,7 @@ import {
     signInWithPopup,
     updateProfile
 } from "firebase/auth";
+import {toastErrorNotify, toastSuccessNotify} from "../helpers/ToastNotify";
 
 
 // TODO: Replace the following with your app's Firebase project configuration
@@ -30,7 +31,6 @@ const auth = getAuth(app);
 // A firebase method to create a user
 export const createUser = async (email, password, navigate, displayName) => {
     try {
-        let userCredential
         await createUserWithEmailAndPassword(
             auth,
             email,
@@ -42,19 +42,19 @@ export const createUser = async (email, password, navigate, displayName) => {
             displayName: displayName
         })
         navigate("/");
-        console.log(userCredential);
+        toastSuccessNotify("Registered successfully!")
     } catch (err) {
-        alert(err.message);
+        toastErrorNotify(err.message);
     }
 };
 
 export const signIn = async (email, password, navigate) => {
     try {
         let userCredential = await signInWithEmailAndPassword(auth, email, password);
-        // sessionStorage.setItem("user", JSON.stringify(userCredential.user))
+        toastSuccessNotify("Logged in successfully!")
         navigate("/");
     } catch (err) {
-        alert(err.message);
+        toastErrorNotify(err.message);
     }
 };
 
@@ -62,9 +62,10 @@ export const logOut = () => {
     signOut(auth)
         .then((res) => {
             console.log(res);
+            toastSuccessNotify("Logged out successfully!")
             // Sign-out successful.
         }).catch((error) => {
-        alert(error.message);
+        toastErrorNotify(error.message);
         // An error happened.
     });
 }
@@ -90,8 +91,10 @@ export const signUpProvider = (navigate) => {
     signInWithPopup(auth, provider)
         .then((result) => {
             console.log(result)
+            toastSuccessNotify("Logged in successfully!")
             navigate("/");
         }).catch((error) => {
         console.log(error);
+        toastErrorNotify(error)
     });
 }

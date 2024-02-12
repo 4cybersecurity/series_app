@@ -1,6 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import axios from "axios";
 import SerieCard from "../context/SerieCard";
+import {AuthContext} from "../context/AuthContext";
+import {toastErrorNotify, toastWarnNotify} from "../helpers/ToastNotify";
 
 const API_KEY = process.env.REACT_APP_TMDB_KEY;
 const FEATURED_API = `https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}`;
@@ -11,6 +13,7 @@ const Main = () => {
     const [series, setSeries] = useState([])
     const [loading, setLoading] = useState(false)
     const [searchTerm, setSearchTerm] = useState("")
+    const {currentUser} = useContext(AuthContext);
 
     useEffect(() => {
         getSeries(FEATURED_API)
@@ -25,17 +28,17 @@ const Main = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // if (searchTerm && currentUser) {
-        //     getMovies(SEARCH_API + searchTerm);
-        // } else if (!currentUser) {
-        //     toastWarnNotify("Please log in to search a movie");
-        // } else {
-        //     toastWarnNotify("Please enter a text");
-        // }
+        if (searchTerm && currentUser) {
+            getSeries(SEARCH_API + searchTerm);
+        } else if (!currentUser) {
+            toastWarnNotify("Please log in to search a serie");
+        } else {
+            toastWarnNotify("Please enter a text");
+        }
     };
     return (
         <>
-            <form className="search" onClick={handleSubmit}>
+            <form className="search" onSubmit={handleSubmit}>
                 <input type="search"
                        className="search-input"
                        placeholder="Search series..."

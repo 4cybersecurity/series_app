@@ -1,6 +1,7 @@
 import React, {useContext} from "react";
 import {AuthContext} from "./AuthContext";
 import {useNavigate} from "react-router-dom";
+import {toastWarnNotify} from "../helpers/ToastNotify";
 
 const IMG_API = "https://www.themoviedb.org/t/p/w1280/"
 const defaultImage = "https://www.themoviedb.org/t/p/w1280/4edFyasCrkH4MKs6H4mHqlrxA6b.jpg"
@@ -20,7 +21,7 @@ const SerieCard = ({name, poster_path, overview, vote_average, id}) => {
     return (
         <div className="serie"
         onClick={() => {
-            !currentUser && alert("please log in to see details");
+            !currentUser && toastWarnNotify("please log in to see details");
             navigate("/details/" + id);
         }}>
 
