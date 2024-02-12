@@ -19,7 +19,10 @@ const SerieCard = ({name, poster_path, overview, vote_average, id}) => {
     }
     return (
         <div className="serie"
-        onClick={() => navigate("/details/" + id)}>
+        onClick={() => {
+            !currentUser && alert("please log in to see details");
+            navigate("/details/" + id);
+        }}>
 
             <img
                 loading="lazy"
