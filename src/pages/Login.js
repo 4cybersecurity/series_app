@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Container, Row, Col, Form, InputGroup, FormControl, Button} from "react-bootstrap";
+import {Container, Row, Col, Form, InputGroup, Button} from "react-bootstrap";
 import {forgotPassword, signIn, signUpProvider} from "../authentication/firebase";
 import {useNavigate} from "react-router-dom";
 
@@ -28,17 +28,18 @@ const Login = () => {
             <Row className="justify-content-center">
                 <Col md={6}>
                     <div className="text-center">
-                        <img src={""} alt="sample-serie" className="img-fluid"/>
+                        <img src={"https://www.themoviedb.org/t/p/w600_and_h900_bestv2/4edFyasCrkH4MKs6H4mHqlrxA6b.jpg"}
+                        alt="sample-serie" className="img-fluid"/>
                     </div>
                 </Col>
                 <Col md={6}>
                     <div className="login-form">
                         <h1 className="text-center display-3">Login</h1>
                         <Form onSubmit={handleSubmit}>
-                            <Form.Group controlId="email" className="mb-3">
+                            <Form.Group controlId="email">
                                 <Form.Label>Email</Form.Label>
                                 <InputGroup>
-                                    <FormControl
+                                    <Form.Control
                                         type="email"
                                         name="email"
                                         placeholder="Enter email.."
@@ -49,10 +50,10 @@ const Login = () => {
                                 </InputGroup>
                             </Form.Group>
 
-                            <Form.Group controlId="password" className="mb-3">
+                            <Form.Group controlId="password">
                                 <Form.Label>Password</Form.Label>
                                 <InputGroup>
-                                    <FormControl
+                                    <Form.Control
                                         type="password"
                                         name="password"
                                         placeholder="Enter password.."
@@ -81,3 +82,5 @@ const Login = () => {
 };
 
 export default Login;
+
+

@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Container, Row, Col, Form, Button} from "react-bootstrap";
+import {Container, Row, Col, Form, Button, InputGroup} from "react-bootstrap";
 import {createUser} from "../authentication/firebase";
 import {useNavigate} from "react-router-dom";
 
@@ -30,7 +30,8 @@ const Register = () => {
             <Row className="justify-content-center">
                 <Col md={6}>
                     <div className="text-center">
-                        <img src={""} alt="sample-serie" className="img-fluid"/>
+                        <img src={"https://www.themoviedb.org/t/p/w600_and_h900_bestv2/4edFyasCrkH4MKs6H4mHqlrxA6b.jpg"}
+                             alt="sample-serie" className="img-fluid"/>
                     </div>
                 </Col>
                 <Col md={6}>
@@ -51,6 +52,7 @@ const Register = () => {
 
                             <Form.Group controlId="lastName">
                                 <Form.Label>Last Name</Form.Label>
+                                <InputGroup>
                                 <Form.Control
                                     type="text"
                                     name="lastName"
@@ -59,10 +61,12 @@ const Register = () => {
                                     onChange={handleChange}
                                     required
                                 />
+                                </InputGroup>
                             </Form.Group>
 
                             <Form.Group controlId="email">
                                 <Form.Label>Email</Form.Label>
+                                <InputGroup>
                                 <Form.Control
                                     type="email"
                                     name="email"
@@ -71,10 +75,12 @@ const Register = () => {
                                     onChange={handleChange}
                                     required
                                 />
+                                </InputGroup>
                             </Form.Group>
 
                             <Form.Group controlId="password">
                                 <Form.Label>Password</Form.Label>
+                                <InputGroup>
                                 <Form.Control
                                     type="password"
                                     name="password"
@@ -83,6 +89,7 @@ const Register = () => {
                                     onChange={handleChange}
                                     required
                                 />
+                                </InputGroup>
                             </Form.Group>
 
                             <Button type="submit" variant="primary" block>

@@ -1,61 +1,64 @@
 import React, {useContext, useEffect, useState} from "react";
+import {Form, Button, Spinner} from "react-bootstrap";
 import axios from "axios";
 import SerieCard from "../components/SerieCard";
 import {AuthContext} from "../context/AuthContext";
-import {toastErrorNotify, toastWarnNotify} from "../helpers/ToastNotify";
+import {toastWarnNotify} from "../helpers/ToastNotify";
 
 const API_KEY = process.env.REACT_APP_TMDB_KEY;
 const FEATURED_API = `https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}`;
 const SEARCH_API = `https://api.themoviedb.org/3/search/tv?api_key=${API_KEY}&query=`;
 
-
 const Main = () => {
-    const [series, setSeries] = useState([])
-    const [loading, setLoading] = useState(false)
-    const [searchTerm, setSearchTerm] = useState("")
+    const [series, setSeries] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [searchTerm, setSearchTerm] = useState("");
     const {currentUser} = useContext(AuthContext);
 
+
     useEffect(() => {
-        getSeries(FEATURED_API)
+        getSeries(FEATURED_API);
     }, []);
+
     const getSeries = (API) => {
-        setLoading(true)
-        axios.get(API)
-            .then(res => setSeries(res.data.results))
+        setLoading(true);
+        axios
+            .get(API)
+            .then((res) => setSeries(res.data.results))
             .catch((err) => console.log(err))
-            .finally(() => setLoading(false))
-    }
+            .finally(() => setLoading(false));
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if (searchTerm && currentUser) {
             getSeries(SEARCH_API + searchTerm);
         } else if (!currentUser) {
-            toastWarnNotify("Please log in to search a serie");
+            toastWarnNotify("Please log in to search a series");
         } else {
-            toastWarnNotify("Please enter a text");
+            toastWarnNotify("Please enter a search term");
         }
     };
+
     return (
         <>
-            <form className="search" onSubmit={handleSubmit}>
-                <input type="search"
-                       className="search-input"
-                       placeholder="Search series..."
-                       onChange={(e) => setSearchTerm(e.target.value)}/>
-                <button type="submit">Search</button>
-            </form>
-            <div className="d-flex justify-content-center flex-wrap">
+            <Form className="search" onSubmit={handleSubmit}>
+                <Form.Control
+                    type="search"
+                    placeholder="Search series..."
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                />
+                <Button type="submit">Search</Button>
+            </Form>
+            <div className="serie-container">
                 {loading ? (
-                    <div className="spinner-border text-primary m-5" role="status">
-                        <span className="sr-only">Loading...</span>
-                    </div>
+                    <Spinner animation="border" variant="primary" className="m-5"/>
                 ) : (
-                    series.map((serie) => <SerieCard key={serie.id} {...serie}/>)
+                    series.map((serie) => <SerieCard key={serie.id} {...serie} />)
                 )}
             </div>
         </>
-    )
-}
+    );
+};
 
 export default Main;

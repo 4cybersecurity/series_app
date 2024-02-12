@@ -1,9 +1,12 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import {Link, useParams} from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { Card, Row, Col, Image, ListGroup } from "react-bootstrap";
+import VideoSection from "../components/VideoSection";
 
 const SerieDetail = () => {
-    const [serieDetails, setSerieDetails] = useState("");
+    const [serieDetails, setSerieDetails] = useState({});
+    const [videoKey, setVideoKey] = useState("");
     const {
         name,
         poster_path,
@@ -11,47 +14,61 @@ const SerieDetail = () => {
         vote_average,
         vote_count,
     } = serieDetails;
-    const {id} = useParams();
+    const { id } = useParams();
     const API_KEY = process.env.REACT_APP_TMDB_KEY;
     const serieDetailBaseUrl = `https://api.themoviedb.org/3/tv/${id}?api_key=${API_KEY}`;
+    const videoUrl = `https://api.themoviedb.org/3/tv/${id}/videos?api_key=${API_KEY}`;
     const baseImageUrl = "https://www.themoviedb.org/t/p/w1280/";
-    const defaultImage = "https://www.themoviedb.org/t/p/w1280/4edFyasCrkH4MKs6H4mHqlrxA6b.jpg";
-
+    const defaultImage =
+        "https://www.themoviedb.org/t/p/w1280/4edFyasCrkH4MKs6H4mHqlrxA6b.jpg";
 
     useEffect(() => {
-        axios.get(serieDetailBaseUrl)
-            .then(res => setSerieDetails(res.data))
-            .catch(err => console.log(err))
-    }, [serieDetailBaseUrl]);
+        axios
+            .get(serieDetailBaseUrl)
+            .then((res) => setSerieDetails(res.data))
+            .catch((err) => console.log(err));
+
+        axios
+            .get(videoUrl)
+            .then((res) => {
+                const key = res.data.results[0]?.key;
+                setVideoKey(key);
+            })
+            .catch((err) => console.log(err));
+    }, [serieDetailBaseUrl, videoUrl]);
+
     return (
         <div className="container py-5">
             <h1 className="text-center">{name}</h1>
-            <div className="card mb-3">
-                <div className="row g-0">
-                    <div className="col-md-4">
-                        <img
+            {videoKey && <VideoSection videoKey={videoKey} />}
+            <Card className="mb-3">
+                <Row className="g-0">
+                    <Col md={4}>
+                        <Image
                             src={poster_path ? baseImageUrl + poster_path : defaultImage}
                             className="img-fluid rounded-start"
-                            alt="..."
+                            alt="Serie Poster"
                         />
-                    </div>
-                    <div className="col-md-8 d-flex flex-column ">
-                        <div className="card-body">
-                            <h5 className="card-title">Overview</h5>
-                            <p className="card-text">{overview}</p>
-                        </div>
-                        <ul className="list-group ">
-                            <li className="list-group-item">{"Rate : " + vote_average}</li>
-                            <li className="list-group-item">
-                                {"Total Vote : " + vote_count}
-                            </li>
-                            <li className="list-group-item">
-                                <Link to={-1} className="card-link">Go Back</Link>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>)
-}
+                    </Col>
+                    <Col md={8} className="d-flex flex-column">
+                        <Card.Body>
+                            <Card.Title>Overview</Card.Title>
+                            <Card.Text>{overview}</Card.Text>
+                        </Card.Body>
+                        <ListGroup variant="flush">
+                            <ListGroup.Item>{"Rate: " + vote_average}</ListGroup.Item>
+                            <ListGroup.Item>{"Total Vote: " + vote_count}</ListGroup.Item>
+                            <ListGroup.Item>
+                                <Link to={-1} className="card-link">
+                                    Go Back
+                                </Link>
+                            </ListGroup.Item>
+                        </ListGroup>
+                    </Col>
+                </Row>
+            </Card>
+        </div>
+    );
+};
+
 export default SerieDetail;
