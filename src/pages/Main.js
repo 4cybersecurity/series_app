@@ -1,9 +1,10 @@
 import React, {useContext, useEffect, useState} from "react";
-import {Form, Button, Spinner} from "react-bootstrap";
+import {Form, Spinner} from "react-bootstrap";
 import axios from "axios";
 import SerieCard from "../components/SerieCard";
 import {AuthContext} from "../context/AuthContext";
 import {toastWarnNotify} from "../helpers/ToastNotify";
+import {SearchButton} from "../buttons/SearchButton";
 
 const API_KEY = process.env.REACT_APP_TMDB_KEY;
 const FEATURED_API = `https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}`;
@@ -49,7 +50,7 @@ const Main = () => {
                         placeholder="Search series..."
                         onChange={(e) => setSearchTerm(e.target.value)}
                     />
-                    <Button className="search-input" type="submit">Search</Button>
+                    <SearchButton/>
                 </Form>
             </div>
 

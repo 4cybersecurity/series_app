@@ -1,13 +1,24 @@
 import React, {useState} from "react";
-import {Container, Row, Col, Form, InputGroup, Button} from "react-bootstrap";
+import {Col, Container, Form, InputGroup, Row} from "react-bootstrap";
 import {forgotPassword, signIn, signUpProvider} from "../authentication/firebase";
 import {useNavigate} from "react-router-dom";
+import * as PropTypes from "prop-types";
+import {GoogleButton} from "../buttons/GoogleButton";
+import {LogInButton} from "../buttons/LogInButton";
 
+GoogleButton.propTypes = {onClick: PropTypes.func};
 const Login = () => {
     const [info, setInfo] = useState({
         email: "",
         password: ""
     });
+
+    const formStyle = {
+        flex: "1",
+        backgroundColor: "lightGray",
+        color: "black",
+        padding: "5rem"
+    };
 
     const navigate = useNavigate();
 
@@ -33,7 +44,7 @@ const Login = () => {
                     </div>
                 </Col>
                 <Col md={6}>
-                    <div className="login-form">
+                    <div style={formStyle}>
                         <h1 className="text-center display-3">Login</h1>
                         <Form onSubmit={handleSubmit}>
                             <Form.Group controlId="email">
@@ -66,13 +77,9 @@ const Login = () => {
 
                             <div className="link" onClick={() => forgotPassword(email)}>Forgot Password</div>
 
-                            <Button type="submit" variant="primary" className="mb-3">
-                                Login
-                            </Button>
+                            <LogInButton/>
 
-                            <Button onClick={() => signUpProvider(navigate)} variant="primary" className="form-control">
-                                Continue with Google
-                            </Button>
+                            <GoogleButton onClick={() => signUpProvider(navigate)}/>
                         </Form>
                     </div>
                 </Col>

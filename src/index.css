@@ -84,17 +84,12 @@ body {
     margin-top: 15px;
 }
 
-.navbar {
-    padding: 1rem 3rem;
-    background-color: #0d47a1 !important;
-}
-
 .form-image {
     min-width: 800px;
     min-height: 800px;
 }
 
-.register-form {
+.form {
     flex: 1;
     background-color: #eeeeee;
     color: #000000;

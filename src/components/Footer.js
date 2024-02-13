@@ -10,9 +10,9 @@ const Footer = () => {
             <MDBContainer className='p-4'></MDBContainer>
 
             <div className='text-center p-3' style={{backgroundColor: 'blue'}}>
-                ©️ 2020 Copyright:
+                ©️ 2024 Copyright:
                 <a className='text-white' href='https://ahmetsimsek.be/'>
-                    MyPage
+                     Owner
                 </a>
             </div>
         </MDBFooter>

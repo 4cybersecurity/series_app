@@ -11,6 +11,13 @@ const Register = () => {
         password: "",
     });
 
+    const formStyle = {
+        flex: "1",
+        backgroundColor: "lightGray",
+        color: "black",
+        padding: "5rem"
+    };
+
     const navigate = useNavigate();
 
     const {firstName, lastName, email, password} = info;
@@ -35,7 +42,7 @@ const Register = () => {
                     </div>
                 </Col>
                 <Col md={6}>
-                    <div className="register-form">
+                    <div style={formStyle}>
                         <h1 className="text-center display-3">Register</h1>
                         <Form onSubmit={handleSubmit}>
                             <Form.Group controlId="firstName">
