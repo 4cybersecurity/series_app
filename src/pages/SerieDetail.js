@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
-import { Card, Row, Col, Image, ListGroup } from "react-bootstrap";
+import {Link, useParams} from "react-router-dom";
+import {Card, Row, Col, Image, ListGroup} from "react-bootstrap";
 import VideoSection from "../components/VideoSection";
 
 const SerieDetail = () => {
@@ -14,7 +14,7 @@ const SerieDetail = () => {
         vote_average,
         vote_count,
     } = serieDetails;
-    const { id } = useParams();
+    const {id} = useParams();
     const API_KEY = process.env.REACT_APP_TMDB_KEY;
     const serieDetailBaseUrl = `https://api.themoviedb.org/3/tv/${id}?api_key=${API_KEY}`;
     const videoUrl = `https://api.themoviedb.org/3/tv/${id}/videos?api_key=${API_KEY}`;
@@ -39,8 +39,8 @@ const SerieDetail = () => {
 
     return (
         <div className="container py-5">
-            <h1 className="text-center">{name}</h1>
-            {videoKey && <VideoSection videoKey={videoKey} />}
+            <h1 className="text-center mb-4">{name}</h1>
+            {videoKey && <VideoSection videoKey={videoKey}/>}
             <Card className="mb-3">
                 <Row className="g-0">
                     <Col md={4}>
@@ -52,14 +52,18 @@ const SerieDetail = () => {
                     </Col>
                     <Col md={8} className="d-flex flex-column">
                         <Card.Body>
-                            <Card.Title>Overview</Card.Title>
+                            <Card.Title className="mb-3">Overview</Card.Title>
                             <Card.Text>{overview}</Card.Text>
                         </Card.Body>
                         <ListGroup variant="flush">
-                            <ListGroup.Item>{"Rate: " + vote_average}</ListGroup.Item>
-                            <ListGroup.Item>{"Total Vote: " + vote_count}</ListGroup.Item>
+                            <ListGroup.Item className="mb-2">
+                                <strong>Rate:</strong> {vote_average}
+                            </ListGroup.Item>
+                            <ListGroup.Item className="mb-2">
+                                <strong>Total Vote:</strong> {vote_count}
+                            </ListGroup.Item>
                             <ListGroup.Item>
-                                <Link to={-1} className="card-link">
+                                <Link to={-1} className="btn btn-secondary">
                                     Go Back
                                 </Link>
                             </ListGroup.Item>

@@ -42,18 +42,21 @@ const Main = () => {
 
     return (
         <>
-            <Form className="search" onSubmit={handleSubmit}>
-                <Form.Control
-                    type="search"
-                    placeholder="Search series..."
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                />
-                <Button type="submit">Search</Button>
-            </Form>
-            <div className="serie-container row">
+            <div className="d-flex justify-content-center">
+                <Form className="search" onSubmit={handleSubmit}>
+                    <Form.Control
+                        type="search"
+                        placeholder="Search series..."
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                    <Button className="search-input" type="submit">Search</Button>
+                </Form>
+            </div>
+
+            <div className="d-flex justify-content-center flex-wrap">
 
                 {loading ? (
-                    <Spinner animation="border" variant="primary"  />
+                    <Spinner animation="border" variant="primary"/>
                 ) : (
                     series.map((serie) => <SerieCard key={serie.id} {...serie} />)
                 )}

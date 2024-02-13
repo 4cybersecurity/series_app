@@ -53,42 +53,42 @@ const Register = () => {
                             <Form.Group controlId="lastName">
                                 <Form.Label>Last Name</Form.Label>
                                 <InputGroup>
-                                <Form.Control
-                                    type="text"
-                                    name="lastName"
-                                    placeholder="Enter last name.."
-                                    value={lastName}
-                                    onChange={handleChange}
-                                    required
-                                />
+                                    <Form.Control
+                                        type="text"
+                                        name="lastName"
+                                        placeholder="Enter last name.."
+                                        value={lastName}
+                                        onChange={handleChange}
+                                        required
+                                    />
                                 </InputGroup>
                             </Form.Group>
 
                             <Form.Group controlId="email">
                                 <Form.Label>Email</Form.Label>
                                 <InputGroup>
-                                <Form.Control
-                                    type="email"
-                                    name="email"
-                                    placeholder="Enter email.."
-                                    value={email}
-                                    onChange={handleChange}
-                                    required
-                                />
+                                    <Form.Control
+                                        type="email"
+                                        name="email"
+                                        placeholder="Enter email.."
+                                        value={email}
+                                        onChange={handleChange}
+                                        required
+                                    />
                                 </InputGroup>
                             </Form.Group>
 
                             <Form.Group controlId="password">
                                 <Form.Label>Password</Form.Label>
                                 <InputGroup>
-                                <Form.Control
-                                    type="password"
-                                    name="password"
-                                    placeholder="Enter password.."
-                                    value={password}
-                                    onChange={handleChange}
-                                    required
-                                />
+                                    <Form.Control
+                                        type="password"
+                                        name="password"
+                                        placeholder="Enter password.."
+                                        value={password}
+                                        onChange={handleChange}
+                                        required
+                                    />
                                 </InputGroup>
                             </Form.Group>
 

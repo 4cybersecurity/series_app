@@ -1,15 +1,15 @@
-import React, { useContext } from "react";
-import { AuthContext } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
-import { Image, Badge } from "react-bootstrap";
-import { toastWarnNotify } from "../helpers/ToastNotify";
+import React, {useContext} from "react";
+import {AuthContext} from "../context/AuthContext";
+import {useNavigate} from "react-router-dom";
+import {Image, Badge} from "react-bootstrap";
+import {toastWarnNotify} from "../helpers/ToastNotify";
 
 const IMG_API = "https://www.themoviedb.org/t/p/w1280/";
 const defaultImage =
     "https://www.themoviedb.org/t/p/w1280/4edFyasCrkH4MKs6H4mHqlrxA6b.jpg";
 
-const SerieCard = ({ name, poster_path, overview, vote_average, id }) => {
-    const { currentUser } = useContext(AuthContext);
+const SerieCard = ({name, poster_path, overview, vote_average, id}) => {
+    const {currentUser} = useContext(AuthContext);
     const navigate = useNavigate();
 
     const handleVoteClass = (vote) => {
@@ -24,7 +24,7 @@ const SerieCard = ({ name, poster_path, overview, vote_average, id }) => {
 
     return (
         <div
-            className="serie col-3"
+            className="col-4 col-md-3 col-lg-2 serie "
             onClick={() => {
                 !currentUser && toastWarnNotify("Please log in to see details");
                 navigate("/details/" + id);
@@ -38,9 +38,9 @@ const SerieCard = ({ name, poster_path, overview, vote_average, id }) => {
             <div className="d-flex align-items-baseline justify-content-between p-1 text-white">
                 <h5>{name}</h5>
                 {currentUser && (
-                    <Badge className={`tag ${handleVoteClass(vote_average)}`}>
+                    <span className={`tag ${handleVoteClass(vote_average)}`}>
                         {vote_average}
-                    </Badge>
+                    </span>
                 )}
             </div>
             <div className="serie-over">

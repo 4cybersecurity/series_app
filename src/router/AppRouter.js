@@ -9,14 +9,14 @@ import {AuthContext} from "../context/AuthContext";
 import Footer from "../components/Footer";
 
 
-
-
 const AppRouter = () => {
     const {currentUser} = useContext(AuthContext)
-    function PrivateRouter(){
+
+    function PrivateRouter() {
         return currentUser ? <Outlet/> : <Navigate to="/login" replace/>
     }
-    return(
+
+    return (
         <BrowserRouter>
             <Navbar/>
             <Routes>
@@ -24,7 +24,7 @@ const AppRouter = () => {
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/register" element={<Register/>}/>
                 <Route path="/details/:id" element={<PrivateRouter/>}>
-                <Route path="/details/:id" element={<SerieDetail/>}/>
+                    <Route path="/details/:id" element={<SerieDetail/>}/>
                 </Route>
             </Routes>
             <Footer/>

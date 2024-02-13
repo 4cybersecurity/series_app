@@ -29,7 +29,7 @@ const Login = () => {
                 <Col md={6}>
                     <div className="text-center">
                         <img src={"https://www.themoviedb.org/t/p/w600_and_h900_bestv2/4edFyasCrkH4MKs6H4mHqlrxA6b.jpg"}
-                        alt="sample-serie" className="img-fluid"/>
+                             alt="sample-serie" className="img-fluid"/>
                     </div>
                 </Col>
                 <Col md={6}>
@@ -64,7 +64,7 @@ const Login = () => {
                                 </InputGroup>
                             </Form.Group>
 
-                            <div className="link" onClick={()=>forgotPassword(email)}>Forgot Password</div>
+                            <div className="link" onClick={() => forgotPassword(email)}>Forgot Password</div>
 
                             <Button type="submit" variant="primary" className="mb-3">
                                 Login

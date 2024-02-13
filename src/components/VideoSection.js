@@ -1,7 +1,7 @@
 import React from "react";
-import { Card } from "react-bootstrap";
+import {Card} from "react-bootstrap";
 
-const VideoSection = ({ videoKey }) => {
+const VideoSection = ({videoKey}) => {
     return (
         <Card className="w-75 m-auto my-3">
             <Card.Body>

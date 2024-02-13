@@ -1,12 +1,12 @@
-import React, { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { Button, Navbar as BootstrapNavbar } from "react-bootstrap";
-import { logOut } from "../authentication/firebase";
-import { AuthContext } from "../context/AuthContext";
+import React, {useContext} from "react";
+import {Link, useNavigate} from "react-router-dom";
+import {Button, Navbar as BootstrapNavbar} from "react-bootstrap";
+import {logOut} from "../authentication/firebase";
+import {AuthContext} from "../context/AuthContext";
 
 const Navbar = () => {
     const navigate = useNavigate();
-    const { currentUser } = useContext(AuthContext);
+    const {currentUser} = useContext(AuthContext);
 
     // Define inline styles
     const navbarStyle = {
