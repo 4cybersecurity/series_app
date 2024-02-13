@@ -1,7 +1,7 @@
 import React, {useContext} from "react";
 import {AuthContext} from "../context/AuthContext";
 import {useNavigate} from "react-router-dom";
-import {Image, Badge} from "react-bootstrap";
+import {Image} from "react-bootstrap";
 import {toastWarnNotify} from "../helpers/ToastNotify";
 
 const IMG_API = "https://www.themoviedb.org/t/p/w1280/";
