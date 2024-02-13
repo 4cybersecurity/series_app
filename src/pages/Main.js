@@ -1,10 +1,11 @@
 import React, {useContext, useEffect, useState} from "react";
-import {Form, Spinner} from "react-bootstrap";
+import {Spinner} from "react-bootstrap";
 import axios from "axios";
 import SerieCard from "../components/SerieCard";
 import {AuthContext} from "../context/AuthContext";
 import {toastWarnNotify} from "../helpers/ToastNotify";
-import {SearchButton} from "../buttons/SearchButton";
+import * as PropTypes from "prop-types";
+import {SearchForm} from "../forms/SearchForm";
 
 const API_KEY = process.env.REACT_APP_TMDB_KEY;
 const FEATURED_API = `https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}`;
@@ -44,14 +45,7 @@ const Main = () => {
     return (
         <>
             <div className="d-flex justify-content-center">
-                <Form className="search" onSubmit={handleSubmit}>
-                    <Form.Control
-                        type="search"
-                        placeholder="Search series..."
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                    />
-                    <SearchButton/>
-                </Form>
+                <SearchForm onSubmit={handleSubmit} onChange={(e) => setSearchTerm(e.target.value)}/>
             </div>
 
             <div className="d-flex justify-content-center flex-wrap">
@@ -65,6 +59,11 @@ const Main = () => {
             </div>
         </>
     );
+};
+
+SearchForm.propTypes = {
+    onSubmit: PropTypes.func,
+    onChange: PropTypes.func
 };
 
 export default Main;

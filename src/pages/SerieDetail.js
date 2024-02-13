@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
-import {Link, useParams} from "react-router-dom";
-import {Card, Row, Col, Image, ListGroup} from "react-bootstrap";
+import {useParams} from "react-router-dom";
 import VideoSection from "../components/VideoSection";
+import * as PropTypes from "prop-types";
+import {SerieDetailCard} from "../components/SerieDetailCard";
 
 const SerieDetail = () => {
     const [serieDetails, setSerieDetails] = useState({});
@@ -41,38 +42,19 @@ const SerieDetail = () => {
         <div className="container py-5">
             <h1 className="text-center mb-4">{name}</h1>
             {videoKey && <VideoSection videoKey={videoKey}/>}
-            <Card className="mb-3">
-                <Row className="g-0">
-                    <Col md={4}>
-                        <Image
-                            src={poster_path ? baseImageUrl + poster_path : defaultImage}
-                            className="img-fluid rounded-start"
-                            alt="Serie Poster"
-                        />
-                    </Col>
-                    <Col md={8} className="d-flex flex-column">
-                        <Card.Body>
-                            <Card.Title className="mb-3">Overview</Card.Title>
-                            <Card.Text>{overview}</Card.Text>
-                        </Card.Body>
-                        <ListGroup variant="flush">
-                            <ListGroup.Item className="mb-2">
-                                <strong>Rate:</strong> {vote_average}
-                            </ListGroup.Item>
-                            <ListGroup.Item className="mb-2">
-                                <strong>Total Vote:</strong> {vote_count}
-                            </ListGroup.Item>
-                            <ListGroup.Item>
-                                <Link to={-1} className="btn btn-secondary">
-                                    Go Back
-                                </Link>
-                            </ListGroup.Item>
-                        </ListGroup>
-                    </Col>
-                </Row>
-            </Card>
+            <SerieDetailCard posterPath={poster_path} baseImageUrl={baseImageUrl} defaultImage={defaultImage}
+                             overview={overview} voteAverage={vote_average} voteCount={vote_count}/>
         </div>
     );
+};
+
+SerieDetailCard.propTypes = {
+    posterPath: PropTypes.any,
+    baseImageUrl: PropTypes.string,
+    defaultImage: PropTypes.string,
+    overview: PropTypes.any,
+    voteAverage: PropTypes.any,
+    voteCount: PropTypes.any
 };
 
 export default SerieDetail;

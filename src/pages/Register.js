@@ -1,7 +1,9 @@
 import React, {useState} from "react";
-import {Container, Row, Col, Form, Button, InputGroup} from "react-bootstrap";
+import {Col, Container, Row} from "react-bootstrap";
 import {createUser} from "../authentication/firebase";
 import {useNavigate} from "react-router-dom";
+import * as PropTypes from "prop-types";
+import {RegisterForm} from "../forms/RegisterForm";
 
 const Register = () => {
     const [info, setInfo] = useState({
@@ -38,76 +40,29 @@ const Register = () => {
                 <Col md={6}>
                     <div className="text-center">
                         <img src={"https://www.themoviedb.org/t/p/w600_and_h900_bestv2/4edFyasCrkH4MKs6H4mHqlrxA6b.jpg"}
-                             alt="sample-serie" className="img-fluid"/>
+                             alt="sample-serie" className="img-fluid"
+                        />
                     </div>
                 </Col>
                 <Col md={6}>
                     <div style={formStyle}>
                         <h1 className="text-center display-3">Register</h1>
-                        <Form onSubmit={handleSubmit}>
-                            <Form.Group controlId="firstName">
-                                <Form.Label>First Name</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    name="firstName"
-                                    placeholder="Enter first name.."
-                                    value={firstName}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </Form.Group>
-
-                            <Form.Group controlId="lastName">
-                                <Form.Label>Last Name</Form.Label>
-                                <InputGroup>
-                                    <Form.Control
-                                        type="text"
-                                        name="lastName"
-                                        placeholder="Enter last name.."
-                                        value={lastName}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </InputGroup>
-                            </Form.Group>
-
-                            <Form.Group controlId="email">
-                                <Form.Label>Email</Form.Label>
-                                <InputGroup>
-                                    <Form.Control
-                                        type="email"
-                                        name="email"
-                                        placeholder="Enter email.."
-                                        value={email}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </InputGroup>
-                            </Form.Group>
-
-                            <Form.Group controlId="password">
-                                <Form.Label>Password</Form.Label>
-                                <InputGroup>
-                                    <Form.Control
-                                        type="password"
-                                        name="password"
-                                        placeholder="Enter password.."
-                                        value={password}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </InputGroup>
-                            </Form.Group>
-
-                            <Button type="submit" variant="primary" block>
-                                Register
-                            </Button>
-                        </Form>
+                        <RegisterForm onSubmit={handleSubmit} value={firstName} onChange={handleChange}
+                                      value1={lastName} value2={email} value3={password}/>
                     </div>
                 </Col>
             </Row>
         </Container>
     );
+};
+
+RegisterForm.propTypes = {
+    onSubmit: PropTypes.func,
+    value: PropTypes.string,
+    onChange: PropTypes.func,
+    value1: PropTypes.string,
+    value2: PropTypes.string,
+    value3: PropTypes.string
 };
 
 export default Register;

@@ -1,12 +1,11 @@
 import React, {useState} from "react";
-import {Col, Container, Form, InputGroup, Row} from "react-bootstrap";
+import {Col, Container, Row} from "react-bootstrap";
 import {forgotPassword, signIn, signUpProvider} from "../authentication/firebase";
 import {useNavigate} from "react-router-dom";
 import * as PropTypes from "prop-types";
 import {GoogleButton} from "../buttons/GoogleButton";
-import {LogInButton} from "../buttons/LogInButton";
+import {LogInForm} from "../forms/LogInForm";
 
-GoogleButton.propTypes = {onClick: PropTypes.func};
 const Login = () => {
     const [info, setInfo] = useState({
         email: "",
@@ -46,46 +45,23 @@ const Login = () => {
                 <Col md={6}>
                     <div style={formStyle}>
                         <h1 className="text-center display-3">Login</h1>
-                        <Form onSubmit={handleSubmit}>
-                            <Form.Group controlId="email">
-                                <Form.Label>Email</Form.Label>
-                                <InputGroup>
-                                    <Form.Control
-                                        type="email"
-                                        name="email"
-                                        placeholder="Enter email.."
-                                        value={email}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </InputGroup>
-                            </Form.Group>
-
-                            <Form.Group controlId="password">
-                                <Form.Label>Password</Form.Label>
-                                <InputGroup>
-                                    <Form.Control
-                                        type="password"
-                                        name="password"
-                                        placeholder="Enter password.."
-                                        value={password}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </InputGroup>
-                            </Form.Group>
-
-                            <div className="link" onClick={() => forgotPassword(email)}>Forgot Password</div>
-
-                            <LogInButton/>
-
-                            <GoogleButton onClick={() => signUpProvider(navigate)}/>
-                        </Form>
+                        <LogInForm onSubmit={handleSubmit} value={email} onChange={handleChange} value1={password}
+                                   onClick={() => forgotPassword(email)} onClick1={() => signUpProvider(navigate)}/>
                     </div>
                 </Col>
             </Row>
         </Container>
     );
+};
+
+GoogleButton.propTypes = {onClick: PropTypes.func};
+LogInForm.propTypes = {
+    onSubmit: PropTypes.func,
+    value: PropTypes.string,
+    onChange: PropTypes.func,
+    value1: PropTypes.string,
+    onClick: PropTypes.func,
+    onClick1: PropTypes.func
 };
 
 export default Login;

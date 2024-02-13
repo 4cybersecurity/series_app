@@ -18,7 +18,7 @@ const Navbar = () => {
         background: "dark",
         color: "white",
         padding: "19px 0",
-        backgroundColor: "lightBlue"
+        backgroundColor: "#0b5ed7"
     };
 
     const brandStyle = {
