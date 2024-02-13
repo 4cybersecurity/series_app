@@ -15,8 +15,8 @@ body {
   flex-direction: column;
 }
 
-.movie {
-  background-color: #b53f6c;
+.serie {
+  background-color: #3f76b5;
   border-radius: 3px;
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
   overflow: hidden;
@@ -26,13 +26,13 @@ body {
   cursor: pointer;
 }
 
-.movie img {
+.serie img {
   object-fit: cover;
   height: 450px;
   max-width: 100%;
 }
 
-.movie-over {
+.serie-over {
   position: absolute;
   background-color: rgba(255, 255, 255, 0.7);
   color: #000;
@@ -46,7 +46,7 @@ body {
   transition: transform 0.3s ease-in-out;
 }
 
-.movie:hover .movie-over {
+.serie:hover .serie-over {
   transform: translateX(0%);
 }
 
@@ -69,7 +69,7 @@ body {
 }
 
 .search {
-  width: 100%;
+  width: 30%;
   justify-content: center;
   background-color: #bdbdbd;
   padding: 1rem;

@@ -50,12 +50,14 @@ const Main = () => {
                 />
                 <Button type="submit">Search</Button>
             </Form>
-            <div className="serie-container">
+            <div className="serie-container row">
+
                 {loading ? (
-                    <Spinner animation="border" variant="primary" className="m-5"/>
+                    <Spinner animation="border" variant="primary"  />
                 ) : (
                     series.map((serie) => <SerieCard key={serie.id} {...serie} />)
                 )}
+
             </div>
         </>
     );

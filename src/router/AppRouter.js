@@ -6,6 +6,7 @@ import Register from "../pages/Register";
 import Main from "../pages/Main";
 import SerieDetail from "../pages/SerieDetail";
 import {AuthContext} from "../context/AuthContext";
+import Footer from "../components/Footer";
 
 
 
@@ -26,6 +27,7 @@ const AppRouter = () => {
                 <Route path="/details/:id" element={<SerieDetail/>}/>
                 </Route>
             </Routes>
+            <Footer/>
         </BrowserRouter>
     )
 }

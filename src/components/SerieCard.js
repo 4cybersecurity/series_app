@@ -24,7 +24,7 @@ const SerieCard = ({ name, poster_path, overview, vote_average, id }) => {
 
     return (
         <div
-            className="serie"
+            className="serie col-3"
             onClick={() => {
                 !currentUser && toastWarnNotify("Please log in to see details");
                 navigate("/details/" + id);

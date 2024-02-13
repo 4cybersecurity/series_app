@@ -8,14 +8,25 @@ const Navbar = () => {
     const navigate = useNavigate();
     const { currentUser } = useContext(AuthContext);
 
+    // Define inline styles
+    const navbarStyle = {
+        background: "dark",
+        color: "white",
+        padding: "10px 0", // Adjust padding as needed
+    };
+
+    const brandStyle = {
+        color: "white",
+    };
+
     return (
         <div>
-            <BootstrapNavbar bg="dark" expand="lg" variant="dark">
+            <BootstrapNavbar style={navbarStyle} expand="lg" variant="dark">
                 <div className="container">
-                    <Link to="/" className="navbar-brand text-white">
+                    <Link to="/" className="navbar-brand" style={brandStyle}>
                         <h4>Series App</h4>
                     </Link>
-                    <div className="d-flex text-white align-items-center">
+                    <div className="d-flex align-items-center">
                         {currentUser ? (
                             <>
                                 <h5 className="mb-0 text-capitalize">
