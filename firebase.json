@@ -1,0 +1,17 @@
+{
+  "hosting": {
+    "site": "my-series-app1",
+    "public": "series_app",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
