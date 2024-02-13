@@ -39,7 +39,7 @@ const SerieCard = ({name, poster_path, overview, vote_average, id}) => {
                 <h5>{name}</h5>
                 {currentUser && (
                     <span className={`tag ${handleVoteClass(vote_average)}`}>
-                        {vote_average}
+                        {vote_average.toFixed(1)}
                     </span>
                 )}
             </div>
